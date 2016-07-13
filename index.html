@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Trek/Plan</title>
+  <meta name="description" content="Dedicated to making your trek well fed.">
+  <meta name="author" content="Jason Domogalla">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="stylesheet" href="css/font-awesome.css">	
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/skeleton.css">				
+	<link rel="stylesheet" href="css/style.css">
+
+
+  <!-- JavaScript
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  	<!-- ANGULAR  -->
+	 <!-- 1. Load libraries -->
+     <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+
+
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+	<link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+<app>
+ <div class="navbar">
+	 <div class="container">
+	 	<div class="row">
+	 		<div class="four columns">
+	 			<h4> Trek/Food </h4>
+	 		</div>
+	 		<div class="two columns">
+				<select class="u-full-width">
+					<option [value]="p" *ngFor="let p of powers"> Person</option>
+				</select>
+	 		</div>
+	 		<div class="two columns">
+				<select class="u-full-width">
+					<option value="1">1 Breakfast</option>
+					<option value="2">2 Breakfasts</option>
+					<option value="3">3 Breakfasts</option>
+				</select>
+	 		</div>
+	 		<div class="two columns">
+				<select class="u-full-width">
+					<option value="1">1 Lunch</option>
+					<option value="2">2 Lunches</option>
+					<option value="3">3 Lunches</option>
+				</select> 
+			</div>
+			<div class="two columns">			
+				<select class="u-full-width">
+					<option value="1">1 Dinner</option>
+					<option value="2">2 Dinners</option>
+					<option value="3">3 Dinners</option>
+				</select>
+	 		</div>
+	 	</div>
+	 </div>
+ </div>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="container main">
+	<div class="quick-links">
+		<a href="#breakfasts">breakfasts</a>
+		<a href="#lunches">lunches</a>
+		<a href="#dinners">dinners</a>
+		<a href="#shopping-list">shopping list</a>
+	</div>
+	<!-- <hr> -->
+	<!-- Breakfast -->
+	<div class="row" id="breakfasts">
+	    <div class="five columns">
+	    	<h4> Breakfasts </h4>
+	    </div>
+	    <div class="two columns meal-alert">
+	    	<!-- <em> You need 1 more breakfast </em> -->.
+	    </div>
+	    <div class="five columns">
+	    	<button (click)="addBreakfast()" class="u-pull-right"> add meal </button>
+	    </div>
+	</div>
+	<div class="row meal" *ngFor="let breakfast of breakfasts; let i = index">
+		<h1 class="meal-number">{{i + 1}}</h1>
+	    <div class="twelve columns">
+	    	<h4>
+			<!-- <h1 class="u-pull-left"> 1 </h1> -->
+			<input type="text" class="meal-name" placeholder="meal name" [ngModel]="breakfast.name">
+			</h4>
+			<table class="u-full-width">
+				<thead>
+					<tr>
+						<th>Ingredient</th>
+						<th>How many</th>
+						<!-- <th></th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngIf="!breakfast.ingredients.length" class="meal-alert"><td colspan="3"><em>Add some ingredients</em></td></tr>
+					<tr *ngFor="let ingredient of breakfast.ingredients">
+						<td><input [ngModel]="ingredient.name" type="text" placeholder="ingredient" class="u-full-width"></td>
+						<td><input type="number" placeholder="quantity"></td>
+						<!-- <td><i class="fa fa-trash fa-2x" aria-hidden="true"></i></td> -->
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<button (click)="addIngredient(breakfast)">add ingredient</button>
+				<select class="u-pull-right">
+					<option value="1">Use Once</option>
+					<option value="2">Use Twice</option>
+					<option value="3">Use Three Times</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
+</app>
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+

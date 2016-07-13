@@ -1,0 +1,76 @@
+body {
+	/*color: #1A1406;*/
+}
+.main {
+	margin-top: 50px;
+}
+.navbar {
+	color: #9cc3b1;
+	color: #5E261D;
+	border-bottom: 1px solid #cccccc;
+}
+
+.navbar h6 {
+	margin-bottom: 0;
+}
+
+.navbar h4 {
+	margin-top: 2rem;
+}
+
+.navbar select {
+	margin: 0px;
+	margin-top:2rem;
+}
+
+.quick-links {
+	position: fixed;
+	right: 0px;
+	padding: 5px;
+}
+.quick-links a {
+	display: block;
+}
+
+table input {
+	margin:0;
+}
+
+
+
+.meal {
+	/*background-color: #B36A3D;*/
+	border-top: 1px solid #cccccc;
+	padding-top: 50px;
+}
+.meal-number {
+	position: absolute;
+	left: -7.5%;
+}
+input.meal-name {
+	border-color: transparent;
+	font-size: xx-large;
+	margin: 0px;
+}
+.meal-alert {
+	text-align: center;
+	color: #AD4D32;
+}
+
+/* Helpers */
+.circle {
+	background-color: #AD4D32;
+	border-radius: 2rem;
+	height: 4rem;
+	width: 4rem;
+	text-align: center;
+	/*color: #F1E2D1;*/
+	color: white;
+}
+
+
+.icon {
+	color: #808080;
+}
+
+/* Formatting Issues */
