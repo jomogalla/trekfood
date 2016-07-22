@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Trek/Plan</title>
+  <title>Trek/Food</title>
   <meta name="description" content="Dedicated to making your trek well fed.">
   <meta name="author" content="Jason Domogalla">
 
@@ -50,32 +50,58 @@
 <body>
 <app>
  <div class="navbar">
+ <!-- This seems messed up.....  -->
+ 	<ul class="meal-quicklinks">
+ 		<a href="#breakfasts">
+	 		<li class="breakfast quicklink"></li>
+ 		</a>
+ 		<a href="#lunches">
+	 		<li class="lunch quicklink"></li>
+ 		</a>
+ 		<a href="#dinners">
+	 		<li class="dinner quicklink"></li>
+ 		</a>
+ 		<a href="#snacks">
+			<li class="snack quicklink"></li>
+		</a>
+		<a href="#shopping-list">
+	 		<li class="quicklink shopping-list">
+	 			<!-- <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i> -->
+	 			<i class="fa fa-file-text-o fa-fw fa-rotate-270" aria-hidden="true"></i>
+			</li>
+		</a>
+ 	</ul>
 	 <div class="container">
 	 	<div class="row">
 	 		<div class="four columns">
 	 			<h4> Trek/Food </h4>
 	 		</div>
 	 		<div class="two columns">
-				<select class="u-full-width">
-					<option [value]="p" *ngFor="let p of powers"> Person</option>
+<!-- 				<select class="u-full-width">
+					<option [value]="people" *ngFor="let people of maxPeople"> Person</option>
+				</select> -->
+				<select class="u-full-width" [(ngModel)]="numberOfPeople">
+					<option value="1">1 Person</option>
+					<option value="2">2 People</option>
+					<option value="3">3 People</option>
 				</select>
 	 		</div>
 	 		<div class="two columns">
-				<select class="u-full-width">
+				<select class="u-full-width" [(ngModel)]="numberOfBreakfasts">
 					<option value="1">1 Breakfast</option>
 					<option value="2">2 Breakfasts</option>
 					<option value="3">3 Breakfasts</option>
 				</select>
 	 		</div>
 	 		<div class="two columns">
-				<select class="u-full-width">
+				<select class="u-full-width" [(ngModel)]="numberOfLunches">
 					<option value="1">1 Lunch</option>
 					<option value="2">2 Lunches</option>
 					<option value="3">3 Lunches</option>
 				</select> 
 			</div>
 			<div class="two columns">			
-				<select class="u-full-width">
+				<select class="u-full-width" [(ngModel)]="numberOfDinners">
 					<option value="1">1 Dinner</option>
 					<option value="2">2 Dinners</option>
 					<option value="3">3 Dinners</option>
@@ -84,64 +110,175 @@
 	 	</div>
 	 </div>
  </div>
-
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-<div class="container main">
-	<div class="quick-links">
-		<a href="#breakfasts">breakfasts</a>
-		<a href="#lunches">lunches</a>
-		<a href="#dinners">dinners</a>
-		<a href="#shopping-list">shopping list</a>
-	</div>
-	<!-- <hr> -->
-	<!-- Breakfast -->
-	<div class="row" id="breakfasts">
-	    <div class="five columns">
-	    	<h4> Breakfasts </h4>
-	    </div>
-	    <div class="two columns meal-alert">
-	    	<!-- <em> You need 1 more breakfast </em> -->.
-	    </div>
-	    <div class="five columns">
-	    	<button (click)="addBreakfast()" class="u-pull-right"> add meal </button>
+<div class="meals">
+	<div class="meal-header breakfast" id="breakfasts">
+		<div class="container">
+			<div class="row">
+			    <div class="five columns">
+			    	<h4> Breakfasts </h4>
+			    </div>
+			    <div class="two columns meal-alert">
+			    	<!-- <em> You need 1 more breakfast </em> -->.
+			    </div>
+			    <div class="five columns">
+			    	<button (click)="addBreakfast()" class="u-pull-right add"> add breakfast </button>
+			    </div>
+		    </div>
 	    </div>
 	</div>
-	<div class="row meal" *ngFor="let breakfast of breakfasts; let i = index">
-		<h1 class="meal-number">{{i + 1}}</h1>
-	    <div class="twelve columns">
-	    	<h4>
-			<!-- <h1 class="u-pull-left"> 1 </h1> -->
-			<input type="text" class="meal-name" placeholder="meal name" [ngModel]="breakfast.name">
-			</h4>
+	<div class="container">
+	<!-- 	<div class="quick-links">
+			<a href="#breakfasts">breakfasts</a>
+			<a href="#lunches">lunches</a>
+			<a href="#dinners">dinners</a>
+			<a href="#shopping-list">shopping list</a>
+		</div> -->
+		<!-- <hr> -->
+		<!-- Breakfast -->
+		<div class="row meal" *ngFor="let breakfast of breakfasts; let i = index">
+			<div class="row-divider" [hidden]="i === 0"></div>
+			<h1 class="meal-number">{{i + 1}}</h1>
+		    <div class="twelve columns">
+		    	<h4>
+				<!-- <h1 class="u-pull-left"> 1 </h1> -->
+				<input type="text" class="meal-name no-border" placeholder="meal name" [ngModel]="breakfast.name">
+				<select class="u-pull-right no-border" [(ngModel)]="breakfast.timesUsed">
+					<option value="1">Use Once</option>
+					<option value="2">Use Twice</option>
+					<option value="3">Use Three Times</option>
+				</select>
+				</h4>
+				<table class="u-full-width">
+					<thead>
+						<tr>
+							<th class="ingredient">Ingredient</th>
+							<th class="quanitity">How many</th>
+							<th class="unit"> Units </th>
+							<th class="remove-ingredient"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngIf="!breakfast.ingredients.length" class="meal-alert"><td colspan="3"><em>Add some ingredients</em></td></tr>
+						<tr *ngFor="let ingredient of breakfast.ingredients; let j = index">
+							<td><input [(ngModel)]="ingredient.name" type="text" placeholder="ingredient" class="u-full-width"></td>
+							<td><input [(ngModel)]="ingredient.quantity" type="number" placeholder="quantity"></td>
+							<!-- <td><button class="delete small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
+							<!-- <td><button class="small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
+							<td> <input [(ngModel)]="ingredient.units" type="text" placeholder="oz, slices, etc..."> </td>
+							<td><button (click)="removeMeal('breakfasts', j)" class="small u-pull-right" > remove ingredient </button></td>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<!-- <button class="add small" (click)="addIngredient(breakfast)">add ingredient</button> -->
+					<button class="small" (click)="addIngredient(breakfast)">add ingredient</button>
+					<!-- <button class="u-pull-right delete small"> remove meal </button> -->
+					<button class="u-pull-right small"> remove meal </button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="meal-header lunch" id="lunches">
+		<div class="container">
+			<div class="row">
+			    <div class="five columns">
+			    	<h4> Lunches </h4>
+			    </div>
+			    <div class="two columns meal-alert">
+			    	<!-- <em> You need 1 more breakfast </em> -->.
+			    </div>
+			    <div class="five columns">
+			    	<button (click)="addBreakfast()" class="u-pull-right add"> add lunch </button>
+			    </div>
+		    </div>
+	    </div>
+	</div>
+	<div class="meal-header dinner" id="dinners">
+		<div class="container">
+			<div class="row">
+			    <div class="five columns">
+			    	<h4> Dinners </h4>
+			    </div>
+			    <div class="two columns meal-alert">
+			    	<!-- <em> You need 1 more breakfast </em> -->.
+			    </div>
+			    <div class="five columns">
+			    	<button (click)="addBreakfast()" class="u-pull-right add"> add dinner </button>
+			    </div>
+		    </div>
+	    </div>
+	</div>
+	<div class="meal-header snack" id="snacks">
+		<div class="container">
+			<div class="row">
+			    <div class="five columns">
+			    	<h4> Snacks </h4>
+			    </div>
+			    <div class="two columns meal-alert">
+			    	<!-- <em> You need 1 more breakfast </em> -->.
+			    </div>
+			    <div class="five columns">
+			    	<button (click)="addBreakfast()" class="u-pull-right add"> add snack </button>
+			    </div>
+		    </div>
+	    </div>
+	</div>
+</div>
+<div class="shopping-list" id="shopping-list">
+	 <div class="container">
+	 	<div class="row">
+	 		<div class="eight columns">
+	 			<h4> your shopping list </h4>
+	 		</div>
+	 		<div class="four columns">
+	 			<h5 class="u-pull-right">
+		 			<a href="mailto:?subject=Shopping List Link&body=hello">
+		 				<i class="fa fa-envelope-o" aria-hidden="true"></i>
+		 			</a>
+		 			<a href="javascript:window.print()">
+		 				<i class="fa fa-print" aria-hidden="true"></i>
+		 			</a>
+	 			</h5>
+	 		</div>
+ 		</div>
+ 		<div class="row">
 			<table class="u-full-width">
 				<thead>
 					<tr>
 						<th>Ingredient</th>
 						<th>How many</th>
-						<!-- <th></th> -->
+						<th>Units </th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngIf="!breakfast.ingredients.length" class="meal-alert"><td colspan="3"><em>Add some ingredients</em></td></tr>
-					<tr *ngFor="let ingredient of breakfast.ingredients">
-						<td><input [ngModel]="ingredient.name" type="text" placeholder="ingredient" class="u-full-width"></td>
-						<td><input type="number" placeholder="quantity"></td>
-						<!-- <td><i class="fa fa-trash fa-2x" aria-hidden="true"></i></td> -->
+					<!-- <tr *ngIf="!shoppingList.length" class="meal-alert"><td colspan="3"><em>Add some ingredients</em></td></tr> -->
+					<tr *ngFor="let ingredient of ([breakfasts, lunches, dinners, snacks] | toShoppingList)">
+						<td> {{ingredient.name}} </td>
+						<td> {{ingredient.quantity }} </td>
+						<td> {{ingredient.units}} </td>
 					</tr>
 				</tbody>
 			</table>
-			<div>
-				<button (click)="addIngredient(breakfast)">add ingredient</button>
-				<select class="u-pull-right">
-					<option value="1">Use Once</option>
-					<option value="2">Use Twice</option>
-					<option value="3">Use Three Times</option>
-				</select>
-			</div>
-		</div>
+ 		</div>
 	</div>
 </div>
+
+<div class="footer">
+<!-- 	 <div class="container">
+	 	<div class="row">
+	 		<div class="twelve columns">
+	 			<h4> <i class="fa fa-motorcycle" aria-hidden="true"></i></h4>
+	 		</div>
+ 		</div>
+ 		<div class="row">
+
+ 		</div>
+	</div> -->
+	<!-- <h5><a href="http://domogalla.org"><i class="fa fa-motorcycle u-pull-right" aria-hidden="true"></i></a></h5> -->
+</div>
+
 </app>
 
 <!-- End Document
