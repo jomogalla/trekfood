@@ -40,6 +40,8 @@
       System.import('app').catch(function(err){ console.error(err); });
     </script>
 
+    <!-- Underscore -->
+    <script src="node_modules/underscore/underscore.js"></script>
 
 
   <!-- Favicon
@@ -87,21 +89,21 @@
 				</select>
 	 		</div>
 	 		<div class="two columns">
-				<select class="u-full-width" [(ngModel)]="numberOfBreakfasts">
+				<select class="u-full-width" [(ngModel)]="breakfasts.numberOfMeals">
 					<option value="1">1 Breakfast</option>
 					<option value="2">2 Breakfasts</option>
 					<option value="3">3 Breakfasts</option>
 				</select>
 	 		</div>
 	 		<div class="two columns">
-				<select class="u-full-width" [(ngModel)]="numberOfLunches">
+				<select class="u-full-width" [(ngModel)]="lunches.numberOfMeals">
 					<option value="1">1 Lunch</option>
 					<option value="2">2 Lunches</option>
 					<option value="3">3 Lunches</option>
 				</select> 
 			</div>
 			<div class="two columns">			
-				<select class="u-full-width" [(ngModel)]="numberOfDinners">
+				<select class="u-full-width" [(ngModel)]="dinners.numberOfMeals">
 					<option value="1">1 Dinner</option>
 					<option value="2">2 Dinners</option>
 					<option value="3">3 Dinners</option>
@@ -117,13 +119,13 @@
 		<div class="container">
 			<div class="row">
 			    <div class="five columns">
-			    	<h4> Breakfasts </h4>
+			    	<h4> {{breakfasts.name}} </h4>
 			    </div>
 			    <div class="two columns meal-alert">
 			    	<!-- <em> You need 1 more breakfast </em> -->.
 			    </div>
 			    <div class="five columns">
-			    	<button (click)="addBreakfast()" class="u-pull-right add"> add breakfast </button>
+			    	<button (click)="addBreakfast()" class="u-pull-right add"> add {{breakfasts.name}} </button>
 			    </div>
 		    </div>
 	    </div>
@@ -137,7 +139,7 @@
 		</div> -->
 		<!-- <hr> -->
 		<!-- Breakfast -->
-		<div class="row meal" *ngFor="let breakfast of breakfasts; let i = index">
+		<div class="row meal" *ngFor="let breakfast of breakfasts.meals; let i = index">
 			<div class="row-divider" [hidden]="i === 0"></div>
 			<h1 class="meal-number">{{i + 1}}</h1>
 		    <div class="twelve columns">
@@ -163,11 +165,11 @@
 						<tr *ngIf="!breakfast.ingredients.length" class="meal-alert"><td colspan="3"><em>Add some ingredients</em></td></tr>
 						<tr *ngFor="let ingredient of breakfast.ingredients; let j = index">
 							<td><input [(ngModel)]="ingredient.name" type="text" placeholder="ingredient" class="u-full-width"></td>
-							<td><input [(ngModel)]="ingredient.quantity" type="number" placeholder="quantity"></td>
+							<td><input [(ngModel)]="ingredient.quantity" type="number" placeholder="quantity" class="u-full-width"></td>
 							<!-- <td><button class="delete small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
 							<!-- <td><button class="small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
-							<td> <input [(ngModel)]="ingredient.units" type="text" placeholder="oz, slices, etc..."> </td>
-							<td><button (click)="removeMeal('breakfasts', j)" class="small u-pull-right" > remove ingredient </button></td>
+							<td> <input [(ngModel)]="ingredient.units" type="text" placeholder="oz, slices, etc..." class="u-full-width"> </td>
+							<td><button (click)="removeMeal('breakfasts', j)" class="small u-pull-right u-full" > remove ingredient </button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -253,7 +255,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- <tr *ngIf="!shoppingList.length" class="meal-alert"><td colspan="3"><em>Add some ingredients</em></td></tr> -->
+					<!-- <tr *ngFor="let ingredient of ([breakfasts, lunches, dinners, snacks], | toShoppingList)"> -->
 					<tr *ngFor="let ingredient of ([breakfasts, lunches, dinners, snacks] | toShoppingList)">
 						<td> {{ingredient.name}} </td>
 						<td> {{ingredient.quantity }} </td>

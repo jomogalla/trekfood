@@ -10,20 +10,20 @@ import { ToShoppingListPipe } from './to-shopping-list.pipe';
 
 export class AppComponent { 
 	numberOfPeople: number;
-	numberOfBreakfasts: number;
-	numberOfLunches: number;
-	numberOfDinners: number;
-	numberOfSnacks: number;
+	// numberOfBreakfasts: number;
+	// numberOfLunches: number;
+	// numberOfDinners: number;
+	// numberOfSnacks: number;
 
-	breakfasts: Meal[];
-	lunches: Meal[];
-	dinners: Meal[];
-	snacks: Meal[];
+	breakfasts: MealGroup;
+	lunches: MealGroup;
+	dinners: MealGroup;
+	snacks: MealGroup;
 
 	shoppingList: Ingredient[];
 
 	addBreakfast() {
-		this.breakfasts.push({
+		this.breakfasts.meals.push({
 			id: 0,
 			name: '',
 			ingredients: [],
@@ -51,56 +51,84 @@ export class AppComponent {
 		// this.updateShoppingList();
 	}
 
-	mealCounter(): number {
-		var neededMeals = this.breakfasts.length + this.lunches.length + this.dinners.length + this.snacks.length;
-		var currentMeals =  this.numberOfBreakfasts + this.numberOfBreakfasts + this.numberOfDinners + this.numberOfSnacks;
+	// mealCounter(): number {
+	// 	var neededMeals = this.breakfasts.meals.length + this.lunches.meals.length + this.dinners.meals.length + this.snacks.meals.length;
+	// 	var currentMeals =  this.numberOfBreakfasts + this.numberOfBreakfasts + this.numberOfDinners + this.numberOfSnacks;
 
-		if ( neededMeals = currentMeals) {
+	// 	if ( neededMeals = currentMeals) {
 
-		}
+	// 	}
 
-		return 1;
-	}
+	// 	return 1;
+	// }
 
-	updateShoppingList() {
-		// Breakfast Ingredients + Lunch Ingredients + Dinner Ingredients + Snack Ingredients
-		console.log('Updating Shopping List');
-		this.shoppingList = [];
-		this.shoppingList.concat(
-			this.flattenIngredients(this.breakfasts),
-			this.flattenIngredients(this.lunches),
-			this.flattenIngredients(this.dinners),
-			this.flattenIngredients(this.snacks)
-		)
-	}
+	// updateShoppingList() {
+	// 	// Breakfast Ingredients + Lunch Ingredients + Dinner Ingredients + Snack Ingredients
+	// 	console.log('Updating Shopping List');
+	// 	this.shoppingList = [];
+	// 	this.shoppingList.concat(
+	// 		this.flattenIngredients(this.breakfasts.meals),
+	// 		this.flattenIngredients(this.lunches.meals),
+	// 		this.flattenIngredients(this.dinners.meals),
+	// 		this.flattenIngredients(this.snacks.meals)
+	// 	)
+	// }
 
-	flattenIngredients(meals: Meal[]): Ingredient[] {
-		var ingredients = []
+	// flattenIngredients(meals: Meal[]): Ingredient[] {
+	// 	var ingredients = []
 
 
 
-		for (var mealIndex in meals) {
-			debugger;
-			ingredients.concat(meals[mealIndex].ingredients);
-		}
+	// 	for (var mealIndex in meals) {
+	// 		debugger;
+	// 		ingredients.concat(meals[mealIndex].ingredients);
+	// 	}
 
-		console.log(ingredients);
-		return ingredients;
-	}
+	// 	console.log(ingredients);
+	// 	return ingredients;
+	// }
 
 
 
 	constructor() {
 		this.numberOfPeople = 1;
-		this.numberOfBreakfasts = 1;
-		this.numberOfLunches = 2;
-		this.numberOfDinners = 1;
-		this.numberOfSnacks = 1;
+		// this.numberOfBreakfasts = 1;
+		// this.numberOfLunches = 2;
+		// this.numberOfDinners = 1;
+		// this.numberOfSnacks = 1;
 
-		this.breakfasts = [];
-		this.lunches = [];
-		this.dinners = [];
-		this.snacks = [];
+		this.breakfasts = {
+			id: 0,
+			name: 'Breakfast',
+			numberOfMeals: 1,
+			meals: []
+		};
+
+		this.lunches = {
+			id: 0,
+			name: 'Lunch',
+			numberOfMeals: 2,
+			meals: []
+		};
+
+		this.dinners = {
+			id: 0,
+			name: 'Dinner',
+			numberOfMeals: 1,
+			meals: []
+		};
+
+		this.snacks = {
+			id: 0,
+			name: 'Snacks',
+			numberOfMeals: 1,
+			meals: []
+		};
+
+		// this.breakfasts.meals = [];
+		// this.lunches.meals = [];
+		// this.dinners.meals = [];
+		// this.snacks.meals = [];
 
 		this.shoppingList = [];
 	}
@@ -125,6 +153,13 @@ interface ShoppingListItem {
 	name: string;
 	quantity: number;
 	units: string;
+}
+
+export interface MealGroup {
+	id: number,
+	name: string,
+	numberOfMeals: number,
+	meals: Meal[]
 }
 
 enum mealTypes {

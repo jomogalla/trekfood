@@ -7,7 +7,7 @@
 
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { Meal, Ingredient } from './app.component.ts';
+import { MealGroup, Meal, Ingredient } from './app.component.ts';
 
 @Pipe({
 	name: 'toShoppingList',
@@ -15,18 +15,44 @@ import { Meal, Ingredient } from './app.component.ts';
 })
 
 export class ToShoppingListPipe implements PipeTransform {
-	transform(mealsArray): Ingredient[] {
+	transform(mealGroups: MealGroup[]): Ingredient[] {
 		var shoppingList: Ingredient[] = [];
 
-		for(var mealsArrayIndex in mealsArray){
-			for(var mealIndex in mealsArray[mealsArrayIndex]){
-			// if (meals[mealIndex].ingredients.length) {
-				// console.log(mealsArray[mealsArrayIndex][mealIndex].ingredients);
-				shoppingList = shoppingList.concat(mealsArray[mealsArrayIndex][mealIndex].ingredients);
-			// }
-			}
+		for(var mealGroupIndex in mealGroups){
+			shoppingList = shoppingList.concat(calculateTotalIngredients(mealGroups[mealGroupIndex]));
 		}
 
 		return shoppingList;
 	}
+}
+
+function mealChecker(mealGroup: MealGroup): number {
+	var actualNumberOfMeals: number = 0;
+
+	for(var mealIndex in mealGroup.meals){
+		actualNumberOfMeals +=  +mealGroup.meals[mealIndex].timesUsed;
+	}
+
+	return actualNumberOfMeals;
+}
+
+function calculateTotalIngredients(mealGroup: MealGroup): Ingredient[] {
+	var ingredientList = [];
+
+	for(var mealIndex in mealGroup.meals){
+		for(var ingredientIndex in mealGroup.meals[mealIndex].ingredients) {
+			if(mealGroup.meals[mealIndex].ingredients[ingredientIndex].quantity > 0) {
+				var tempIngredient = _.clone(mealGroup.meals[mealIndex].ingredients[ingredientIndex]);
+				tempIngredient.quantity = tempIngredient.quantity * +mealGroup.meals[mealIndex].timesUsed;
+				ingredientList.push(tempIngredient);
+			}
+		}
+	}	
+
+	return ingredientList;
+}
+
+function combineIngredients(ingredients: Ingredient[]): Ingredient[] {
+
+	return [];
 }
