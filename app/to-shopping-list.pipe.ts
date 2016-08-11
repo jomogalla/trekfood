@@ -48,6 +48,7 @@ function calculateTotalIngredients(mealGroup: MealGroup): Ingredient[] {
 			}
 		}
 	}	
+	console.log('yolo');
 
 	return ingredientList;
 }

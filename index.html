@@ -75,13 +75,10 @@
  	</ul>
 	 <div class="container">
 	 	<div class="row">
-	 		<div class="four columns">
+	 		<div class="two columns">
 	 			<h4> Trek/Food </h4>
 	 		</div>
 	 		<div class="two columns">
-<!-- 				<select class="u-full-width">
-					<option [value]="people" *ngFor="let people of maxPeople"> Person</option>
-				</select> -->
 				<select class="u-full-width" [(ngModel)]="numberOfPeople">
 					<option value="1">1 Person</option>
 					<option value="2">2 People</option>
@@ -109,11 +106,34 @@
 					<option value="3">3 Dinners</option>
 				</select>
 	 		</div>
+	 		<div class="two columns">
+				<select class="u-full-width" [(ngModel)]="snacks.numberOfMeals">
+					<option value="1">1 Snack</option>
+					<option value="2">2 Snacks</option>
+					<option value="3">3 Snacks</option>
+				</select>
+	 		</div>
 	 	</div>
 	 </div>
  </div>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div class="instructions container">
+	<div class="row">
+		<div class="ten columns">
+			<h6> Instructions </h6>
+		</div>
+		<div class="two columns">
+			<button class="small u-pull-right"> Close Instructions </button>
+		</div>
+	</div>
+	<ol>
+		<li> Decide on how many people you plan on feeding </li>
+		<li> Select how many breakfasts, lunches, dinners and snacks you're going to eat. </li>
+		<li> Add your meals below </li>
+		<li> Then add ingredients, each meal should account for one person </li>
+	</ol>
+</div>
 <div class="meals">
 	<div class="meal-header breakfast" id="breakfasts">
 		<div class="container">
@@ -145,7 +165,7 @@
 		    <div class="twelve columns">
 		    	<h4>
 				<!-- <h1 class="u-pull-left"> 1 </h1> -->
-				<input type="text" class="meal-name no-border" placeholder="meal name" [ngModel]="breakfast.name">
+				<input type="text" class="meal-name no-border" placeholder="add meal name" [ngModel]="breakfast.name">
 				<select class="u-pull-right no-border" [(ngModel)]="breakfast.timesUsed">
 					<option value="1">Use Once</option>
 					<option value="2">Use Twice</option>
