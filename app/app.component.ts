@@ -35,6 +35,22 @@ export class AppComponent {
 
 	}
 
+	calculateMealsNeeded(mealGroup: MealGroup): number {
+		var mealsUsed: number = 0;
+		for (var mealIndex in mealGroup.meals) {
+			mealsUsed += +mealGroup.meals[mealIndex].timesUsed;
+		}
+
+		if (mealGroup.numberOfMeals < mealsUsed) {
+			return 2
+		} else if (mealGroup.numberOfMeals > mealsUsed){
+			return 1;
+		} else {
+			return 0;
+		}
+
+	}
+
 	constructor() {
 		this.trekFood = {
 			id: 0,
