@@ -11,8 +11,8 @@ import { ToShoppingListPipe } from './to-shopping-list.pipe';
 export class AppComponent { 
 	trekFood: TrekFood;
 
-	addMeal(mealName: string) {
-		this.trekFood[mealName].meals.push({
+	addMeal(mealType: string) {
+		this.trekFood[mealType].meals.push({
 			id: 0,
 			name: '',
 			ingredients: [],
@@ -20,9 +20,10 @@ export class AppComponent {
 		});
 	}
 
-	removeMeal(mealType: string , ingredientIndex: number) {
-		console.log(this[mealType] + '  |  ' + ingredientIndex);
-		this[mealType].splice(ingredientIndex, 1);
+	removeMeal(mealType: string, mealIndex: number) {
+		if (this.trekFood[mealType].meals.length) {
+			this.trekFood[mealType].meals.splice(mealIndex, 1);
+		}
 	}
 
 	addIngredient(meal:Meal) {
@@ -33,6 +34,12 @@ export class AppComponent {
 			units: ''
 		});
 
+	}
+
+	removeIngredient(mealType: string, mealIndex: number, ingredientIndex: number){
+		if (this.trekFood[mealType].meals[mealIndex].ingredients.length) {
+			this.trekFood[mealType].meals[mealIndex].ingredients.splice(ingredientIndex, 1);
+		}
 	}
 
 	calculateMealsNeeded(mealGroup: MealGroup): number {

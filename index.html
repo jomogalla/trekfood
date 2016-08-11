@@ -166,15 +166,15 @@
 							<!-- <td><button class="delete small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
 							<!-- <td><button class="small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
 							<td> <input [(ngModel)]="ingredient.units" type="text" placeholder="oz, slices, etc..." class="u-full-width"> </td>
-							<td><button (click)="removeMeal('breakfasts', j)" class="small u-pull-right u-full" > remove ingredient </button></td>
+							<td><button (click)="removeIngredient('breakfasts', i, j)" class="small u-pull-right u-full" > remove ingredient </button></td>
 						</tr>
 					</tbody>
 				</table>
 				<div>
 					<!-- <button class="add small" (click)="addIngredient(breakfast)">add ingredient</button> -->
-					<button class="small" (click)="addIngredient(meal)">add ingredient</button>
+					<button (click)="addIngredient(meal)" class="small">add ingredient</button>
 					<!-- <button class="u-pull-right delete small"> remove meal </button> -->
-					<button class="u-pull-right small"> remove meal </button>
+					<button (click)="removeMeal('breakfasts', i)" class="u-pull-right small"> remove meal </button>
 				</div>
 			</div>
 		</div>
@@ -226,7 +226,7 @@
 							<!-- <td><button class="delete small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
 							<!-- <td><button class="small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
 							<td> <input [(ngModel)]="ingredient.units" type="text" placeholder="oz, slices, etc..." class="u-full-width"> </td>
-							<td><button (click)="removeMeal('breakfasts', j)" class="small u-pull-right u-full" > remove ingredient </button></td>
+							<td><button (click)="removeIngredient('lunches', i, j)" class="small u-pull-right u-full" > remove ingredient </button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -234,7 +234,7 @@
 					<!-- <button class="add small" (click)="addIngredient(breakfast)">add ingredient</button> -->
 					<button class="small" (click)="addIngredient(meal)">add ingredient</button>
 					<!-- <button class="u-pull-right delete small"> remove meal </button> -->
-					<button class="u-pull-right small"> remove meal </button>
+					<button (click)="removeMeal('lunches', i)" class="u-pull-right small"> remove {{trekFood.lunches.name}} </button>
 				</div>
 			</div>
 		</div>
@@ -286,7 +286,7 @@
 							<!-- <td><button class="delete small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
 							<!-- <td><button class="small u-pull-right"> <i class="fa fa-trash-o" aria-hidden="true"></i> </button></td> -->
 							<td> <input [(ngModel)]="ingredient.units" type="text" placeholder="oz, slices, etc..." class="u-full-width"> </td>
-							<td><button (click)="removeMeal('breakfasts', j)" class="small u-pull-right u-full" > remove ingredient </button></td>
+							<td><button (click)="removeIngredient('dinners', i, j)" class="small u-pull-right u-full" > remove ingredient </button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -294,7 +294,7 @@
 					<!-- <button class="add small" (click)="addIngredient(breakfast)">add ingredient</button> -->
 					<button class="small" (click)="addIngredient(meal)">add ingredient</button>
 					<!-- <button class="u-pull-right delete small"> remove meal </button> -->
-					<button class="u-pull-right small"> remove meal </button>
+					<button (click)="removeMeal('dinners', i)" class="u-pull-right small"> remove {{trekFood.dinners.name}} </button>
 				</div>
 			</div>
 		</div>
@@ -354,7 +354,7 @@
 					<!-- <button class="add small" (click)="addIngredient(breakfast)">add ingredient</button> -->
 					<button class="small" (click)="addIngredient(meal)">add ingredient</button>
 					<!-- <button class="u-pull-right delete small"> remove meal </button> -->
-					<button class="u-pull-right small"> remove meal </button>
+					<button (click)="removeIngredient('snacks', i, j)" class="u-pull-right small"> remove {{trekFood.snacks.name}} </button>
 				</div>
 			</div>
 		</div>
