@@ -37,8 +37,8 @@ table input {
 }
 
 .footer {
-	margin-top: 5%;
-	text-align: center;
+	margin-top: 10%;
+	/*text-align: right;*/
 	color: #808080 !important;
 }
 
