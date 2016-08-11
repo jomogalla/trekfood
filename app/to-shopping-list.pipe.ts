@@ -18,9 +18,7 @@ export class ToShoppingListPipe implements PipeTransform {
 	transform(trekFood: TrekFood): Ingredient[] {
 		var shoppingList: Ingredient[] = [];
 
-		// for(var mealGroupIndex in mealGroups){
-		// 	shoppingList = shoppingList.concat(calculateTotalIngredients(mealGroups[mealGroupIndex]));
-		// }
+		// Concat all the ingredients
 		shoppingList = shoppingList.concat(calculateTotalIngredients(trekFood.breakfasts, trekFood.numberOfPeople));
 		shoppingList = shoppingList.concat(calculateTotalIngredients(trekFood.lunches, trekFood.numberOfPeople));
 		shoppingList = shoppingList.concat(calculateTotalIngredients(trekFood.dinners, trekFood.numberOfPeople));
