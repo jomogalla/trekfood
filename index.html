@@ -187,9 +187,9 @@
 			    	<h4> {{trekFood.lunches.name}} </h4>
 			    </div>
 			    <div class="two columns meal-alert">
-			    	<div [ngSwitch]="calculateMealsNeeded(trekFood.breakfasts)">
-			    		<div *ngSwitchCase="1">You need more {{trekFood.breakfasts.name}}s</div>
-			    		<div *ngSwitchCase="2">You have too many {{trekFood.breakfasts.name}}s</div>
+			    	<div [ngSwitch]="calculateMealsNeeded(trekFood.lunches)">
+			    		<div *ngSwitchCase="1">You need more {{trekFood.lunches.name}}es</div>
+			    		<div *ngSwitchCase="2">You have too many {{trekFood.lunches.name}}s</div>
 			    		<div *ngSwitchDefault>.</div>
 			    	</div>
 			    </div>
@@ -251,9 +251,9 @@
 			    	<h4> Dinners </h4>
 			    </div>
 			    <div class="two columns meal-alert">
-			    	<div [ngSwitch]="calculateMealsNeeded(trekFood.breakfasts)">
-			    		<div *ngSwitchCase="1">You need more {{trekFood.breakfasts.name}}s</div>
-			    		<div *ngSwitchCase="2">You have too many {{trekFood.breakfasts.name}}s</div>
+			    	<div [ngSwitch]="calculateMealsNeeded(trekFood.dinners)">
+			    		<div *ngSwitchCase="1">You need more {{trekFood.dinners.name}}s</div>
+			    		<div *ngSwitchCase="2">You have too many {{trekFood.dinners.name}}s</div>
 			    		<div *ngSwitchDefault>.</div>
 			    	</div>
 			    </div>
@@ -315,9 +315,9 @@
 			    	<h4> Snacks </h4>
 			    </div>
 			    <div class="two columns meal-alert">
-			    	<div [ngSwitch]="calculateMealsNeeded(trekFood.breakfasts)">
-			    		<div *ngSwitchCase="1">You need more {{trekFood.breakfasts.name}}s</div>
-			    		<div *ngSwitchCase="2">You have too many {{trekFood.breakfasts.name}}s</div>
+			    	<div [ngSwitch]="calculateMealsNeeded(trekFood.snacks)">
+			    		<div *ngSwitchCase="1">You need more {{trekFood.snacks.name}}</div>
+			    		<div *ngSwitchCase="2">You have too many {{trekFood.snacks.name}}</div>
 			    		<div *ngSwitchDefault>.</div>
 			    	</div>
 			    </div>
