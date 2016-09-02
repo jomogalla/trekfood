@@ -7,13 +7,7 @@ npm start
 ```
 
 The application should open in your default browser, if not reach it at 
-```
-localhost:3000
-```
-or
-```
-127.0.0.1:3000
-```
+`localhost:3000` or `127.0.0.1:3000`
 
 
 
